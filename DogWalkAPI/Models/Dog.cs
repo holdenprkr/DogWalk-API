@@ -15,5 +15,6 @@ namespace DogWalkAPI.Models
 			public string Breed { get; set; }
 
 			public string Notes { get; set; }
+
 	}
 }

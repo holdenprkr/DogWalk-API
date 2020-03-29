@@ -59,8 +59,11 @@ namespace DogWalkAPI.Controllers
                                 Phone = reader.GetString(reader.GetOrdinal("Phone"))
                             }
                         };
-
-                        dogs.Add(dog);
+                        if (!reader.IsDBNull(reader.GetOrdinal("Notes")))
+                        {
+                            dog.Notes = reader.GetString(reader.GetOrdinal("Notes"));
+                        }
+                            dogs.Add(dog);
                     }
                     reader.Close();
 
@@ -79,7 +82,7 @@ namespace DogWalkAPI.Controllers
                 {
                     cmd.CommandText = @"
                         SELECT 
-                            d.Id, d.Name, d.Breed, d.OwnerId, o.Name AS OwnerName, o.NeighborhoodId, o.Address, o.Phone, d.Notes 
+                            d.Id, d.Name, d.Breed, d.OwnerId, d.Notes, o.Name AS OwnerName, o.NeighborhoodId, o.Address, o.Phone, d.Notes 
                         FROM Dog d
                         LEFT JOIN Owner o ON d.OwnerId = o.Id
                         WHERE d.Id = @id";
@@ -105,6 +108,10 @@ namespace DogWalkAPI.Controllers
                                 Phone = reader.GetString(reader.GetOrdinal("Phone"))
                             }
                         };
+                        if (!reader.IsDBNull(reader.GetOrdinal("Notes")))
+                        {
+                            dog.Notes = reader.GetString(reader.GetOrdinal("Notes"));
+                        }
                     }
                     reader.Close();
 
@@ -121,12 +128,13 @@ namespace DogWalkAPI.Controllers
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Dog (Name, Breed, OwnerId)
+                    cmd.CommandText = @"INSERT INTO Dog (Name, Breed, OwnerId, Notes)
                                         OUTPUT INSERTED.Id
-                                        VALUES (@name, @breed, @ownerId)";
+                                        VALUES (@name, @breed, @ownerId, @notes)";
                     cmd.Parameters.Add(new SqlParameter("@name", dog.Name));
                     cmd.Parameters.Add(new SqlParameter("@breed", dog.Breed));
                     cmd.Parameters.Add(new SqlParameter("@ownerId", dog.OwnerId));
+                    cmd.Parameters.Add(new SqlParameter("@notes", (object) dog.Notes ?? DBNull.Value));
 
 
                     int newId = (int)cmd.ExecuteScalar();
@@ -149,11 +157,13 @@ namespace DogWalkAPI.Controllers
                         cmd.CommandText = @"UPDATE Dog
                                             SET Name = @name,
                                                 Breed = @breed,
-                                                OwnerId = @ownerId
+                                                OwnerId = @ownerId,
+                                                Notes = @notes
                                             WHERE Id = @id";
                         cmd.Parameters.Add(new SqlParameter("@name", dog.Name));
                         cmd.Parameters.Add(new SqlParameter("@breed", dog.Breed));
                         cmd.Parameters.Add(new SqlParameter("@ownerId", dog.OwnerId));
+                        cmd.Parameters.Add(new SqlParameter("@notes", (object) dog.Notes ?? DBNull.Value));
                         cmd.Parameters.Add(new SqlParameter("@id", id));
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -222,7 +232,7 @@ namespace DogWalkAPI.Controllers
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, Name, Breed, OwnerId
+                        SELECT Id, Name, Breed, OwnerId, Notes
                         FROM Dog
                         WHERE Id = @id";
                     cmd.Parameters.Add(new SqlParameter("@id", id));

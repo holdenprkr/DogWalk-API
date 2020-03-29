@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DogWalkAPI.Models
 {
@@ -13,5 +14,7 @@ namespace DogWalkAPI.Models
         public int NeighborhoodId { get; set; }
 
         public string Phone { get; set; }
+
+        public List<Dog> Dogs { get; set; }
     }
 }
