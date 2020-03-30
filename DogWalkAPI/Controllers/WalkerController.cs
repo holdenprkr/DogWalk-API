@@ -31,15 +31,23 @@ namespace DogWalkAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] Int32? neighborhoodId)
         {
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Id, Name, NeighborhoodId FROM Walker";
+                    cmd.CommandText = "SELECT Id, Name, NeighborhoodId FROM Walker WHERE 1 = 1";
+
+                    if (neighborhoodId != null)
+                    {
+                        cmd.CommandText += " AND NeighborhoodId LIKE @neighborhoodId";
+                        cmd.Parameters.Add(new SqlParameter("@neighborhoodId", "%" + neighborhoodId + "%"));
+                    }
+
                     SqlDataReader reader = cmd.ExecuteReader();
+                    
                     List<Walker> walkers = new List<Walker>();
 
                     while (reader.Read())

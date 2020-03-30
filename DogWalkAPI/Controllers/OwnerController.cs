@@ -184,28 +184,30 @@ namespace DogWalkAPI.Controllers
             }
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Dog dog)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"INSERT INTO Dog (Name, Breed, OwnerId)
-        //                                OUTPUT INSERTED.Id
-        //                                VALUES (@name, @breed, @ownerId)";
-        //            cmd.Parameters.Add(new SqlParameter("@name", dog.Name));
-        //            cmd.Parameters.Add(new SqlParameter("@breed", dog.Breed));
-        //            cmd.Parameters.Add(new SqlParameter("@ownerId", dog.OwnerId));
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Owner owner)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Owner (Name, Address, NeighborhoodId, Phone)
+                                        OUTPUT INSERTED.Id
+                                        VALUES (@name, @address, @neighborhoodId, @phone)";
+                    cmd.Parameters.Add(new SqlParameter("@name", owner.Name));
+                    cmd.Parameters.Add(new SqlParameter("@address", owner.Address));
+                    cmd.Parameters.Add(new SqlParameter("@neighborhoodId", owner.NeighborhoodId));
+                    cmd.Parameters.Add(new SqlParameter("@phone", owner.Phone));
 
 
-        //            int newId = (int)cmd.ExecuteScalar();
-        //            dog.Id = newId;
-        //            return CreatedAtRoute("GetDogs", new { id = newId }, dog);
-        //        }
-        //    }
-        //}
+
+                    int newId = (int)cmd.ExecuteScalar();
+                    owner.Id = newId;
+                    return CreatedAtRoute("GetOwners", new { id = newId }, owner);
+                }
+            }
+        }
 
         //[HttpPut("{id}")]
         //public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Dog dog)
