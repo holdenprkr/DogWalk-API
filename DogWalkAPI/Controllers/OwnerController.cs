@@ -30,7 +30,9 @@ namespace DogWalkAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] string include)
+        public async Task<IActionResult> Get(
+            [FromQuery] string include, 
+            [FromQuery] string q)
         {
             using (SqlConnection conn = Connection)
             {
@@ -46,8 +48,16 @@ namespace DogWalkAPI.Controllers
                         cmd.CommandText += "FROM Owner o ";
                             if (include == "neighborhood")
                             {
-                                cmd.CommandText += "LEFT JOIN Neighborhood n ON o.NeighborhoodId = n.Id";
+                                cmd.CommandText += "LEFT JOIN Neighborhood n ON o.NeighborhoodId = n.Id ";
                             }
+                        cmd.CommandText += "WHERE 1 = 1";
+
+                    if (q != null)
+                    {
+                        cmd.CommandText += " AND Name LIKE @name";
+                        cmd.Parameters.Add(new SqlParameter("@name", "%" + q + "%"));
+                    }
+
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<Owner> owners = new List<Owner>();
 
