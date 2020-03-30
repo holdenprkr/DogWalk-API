@@ -43,8 +43,8 @@ namespace DogWalkAPI.Controllers
 
                     if (neighborhoodId != null)
                     {
-                        cmd.CommandText += " AND NeighborhoodId LIKE @neighborhoodId";
-                        cmd.Parameters.Add(new SqlParameter("@neighborhoodId", "%" + neighborhoodId + "%"));
+                        cmd.CommandText += " AND NeighborhoodId = @neighborhoodId";
+                        cmd.Parameters.Add(new SqlParameter("@neighborhoodId", neighborhoodId));
                     }
 
                     SqlDataReader reader = cmd.ExecuteReader();
