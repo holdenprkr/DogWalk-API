@@ -73,7 +73,7 @@ namespace DogWalkAPI.Controllers
                     cmd.CommandText = @"
                         SELECT wr.Id, wr.Name, wr.NeighborhoodId ";
                             if (include == "walks")
-                                    {
+                            {
                                 cmd.CommandText += ", ws.Id AS WalksId, ws.Date, ws.Duration, ws.WalkerId, ws.DogId ";
                             }
                     cmd.CommandText += "FROM Walker wr ";
@@ -87,7 +87,7 @@ namespace DogWalkAPI.Controllers
 
                     Walker walker = null;
 
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         if (walker == null)
                         {
@@ -112,8 +112,6 @@ namespace DogWalkAPI.Controllers
                             });
                         }
                     }
-
-
                     reader.Close();
 
                     return Ok(walker);
