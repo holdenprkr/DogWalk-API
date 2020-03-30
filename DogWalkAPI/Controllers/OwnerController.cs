@@ -219,65 +219,68 @@ namespace DogWalkAPI.Controllers
             }
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Dog dog)
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = Connection)
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = conn.CreateCommand())
-        //            {
-        //                cmd.CommandText = @"UPDATE Dog
-        //                                    SET Name = @name,
-        //                                        Breed = @breed,
-        //                                        OwnerId = @ownerId
-        //                                    WHERE Id = @id";
-        //                cmd.Parameters.Add(new SqlParameter("@name", dog.Name));
-        //                cmd.Parameters.Add(new SqlParameter("@breed", dog.Breed));
-        //                cmd.Parameters.Add(new SqlParameter("@ownerId", dog.OwnerId));
-        //                cmd.Parameters.Add(new SqlParameter("@id", id));
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Owner owner)
+        {
+            try
+            {
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"UPDATE Owner
+                                            SET Name = @name,
+                                                Address = @address,
+                                                NeighborhoodId = @neighborhoodId,
+                                                Phone = @phone
+                                            WHERE Id = @id";
+                        cmd.Parameters.Add(new SqlParameter("@name", owner.Name));
+                        cmd.Parameters.Add(new SqlParameter("@address", owner.Address));
+                        cmd.Parameters.Add(new SqlParameter("@neighborhoodId", owner.NeighborhoodId));
+                        cmd.Parameters.Add(new SqlParameter("@phone", owner.Phone));
+                        cmd.Parameters.Add(new SqlParameter("@id", id));
 
-        //                int rowsAffected = cmd.ExecuteNonQuery();
-        //                if (rowsAffected > 0)
-        //                {
-        //                    return new StatusCodeResult(StatusCodes.Status204NoContent);
-        //                }
-        //                throw new Exception("No rows affected");
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        if (!DogExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            return new StatusCodeResult(StatusCodes.Status204NoContent);
+                        }
+                        throw new Exception("No rows affected");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                if (!OwnerExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
 
-        //    private bool DogExists(int id)
-        //    {
-        //        using (SqlConnection conn = Connection)
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = conn.CreateCommand())
-        //            {
-        //                cmd.CommandText = @"
-        //                SELECT Id, Name, Breed, OwnerId
-        //                FROM Dog
-        //                WHERE Id = @id";
-        //                cmd.Parameters.Add(new SqlParameter("@id", id));
+        private bool OwnerExists(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    SELECT Id, Name, Address, NeighborhoodId, Phone
+                    FROM Owner
+                    WHERE Id = @id";
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
 
-        //                SqlDataReader reader = cmd.ExecuteReader();
-        //                return reader.Read();
-        //            }
-        //        }
-        //    }
-        //}
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    return reader.Read();
+                }
+            }
+        }
     }
 }
+
