@@ -29,6 +29,12 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="include">This supports the string "neighborhood" and returns the neighborhood for each owner.</param>
+        /// <param name="q">String parameter that returns owners containing the string anywhere in their full name</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get(
             [FromQuery] string include, 
@@ -54,7 +60,7 @@ namespace DogWalkAPI.Controllers
 
                     if (q != null)
                     {
-                        cmd.CommandText += " AND Name LIKE @name";
+                        cmd.CommandText += " AND o.Name LIKE @name";
                         cmd.Parameters.Add(new SqlParameter("@name", "%" + q + "%"));
                     }
 

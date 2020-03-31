@@ -29,8 +29,6 @@ C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\runtimes
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.csproj.CopyComplete
-C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.csproj.CoreCompileInputs.cache
-C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\DogWalkAPI.deps.json
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\DogWalkAPI.runtimeconfig.json
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\DogWalkAPI.runtimeconfig.dev.json
@@ -111,3 +109,12 @@ C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\zh-Hant\
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.dll
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.pdb
 C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.genruntimeconfig.cache
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.csproj.CoreCompileInputs.cache
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\bin\Debug\netcoreapp3.1\DogWalkAPI.xml
+C:\Users\Holden\workspace\DogWalkAPI\DogWalkAPI\obj\Debug\netcoreapp3.1\DogWalkAPI.xml
