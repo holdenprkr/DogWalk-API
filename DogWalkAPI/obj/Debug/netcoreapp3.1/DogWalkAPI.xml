@@ -4,12 +4,84 @@
         <name>DogWalkAPI</name>
     </assembly>
     <members>
+        <member name="M:DogWalkAPI.Controllers.DogController.Get(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="neighborhoodId">Filters dogs by queried neighborhood id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.DogController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id">Gets dog specified by id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.DogController.Put(System.Int32,DogWalkAPI.Models.Dog)">
+            <summary>
+            
+            </summary>
+            <param name="id">Updates dog specified by id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.DogController.Delete(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id">Deletes dog specified by id.</param>
+            <returns></returns>
+        </member>
         <member name="M:DogWalkAPI.Controllers.OwnerController.Get(System.String,System.String)">
             <summary>
             
             </summary>
-            <param name="include">This supports the string "neighborhood" and returns the neighborhood for each owner.</param>
-            <param name="q">String parameter that returns owners containing the string anywhere in their full name</param>
+            <param name="include">Supports "neighborhood" and returns the neighborhood for each owner.</param>
+            <param name="q">Returns owners containing the query string anywhere in their full name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.OwnerController.Get(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id">Gets owner specified by id</param>
+            <param name="include">Supports "neighborhood" and returns the neighborhood for specified owner.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.OwnerController.Put(System.Int32,DogWalkAPI.Models.Owner)">
+            <summary>
+            
+            </summary>
+            <param name="id">Updates owner specified by id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.WalkerController.Get(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="neighborhoodId">Filters walkers by queried neighborhood id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.WalkerController.Get(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id">Gets walker specified by id.</param>
+            <param name="include">Supports "walks" and returns walks in an array for specified walker.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.WalkerController.Put(System.Int32,DogWalkAPI.Models.Walker)">
+            <summary>
+            
+            </summary>
+            <param name="id">Updates walker specified by id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DogWalkAPI.Controllers.WalkerController.Delete(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id">Deletes walker specified by id.</param>
             <returns></returns>
         </member>
     </members>

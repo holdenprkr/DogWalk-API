@@ -32,8 +32,8 @@ namespace DogWalkAPI.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="include">This supports the string "neighborhood" and returns the neighborhood for each owner.</param>
-        /// <param name="q">String parameter that returns owners containing the string anywhere in their full name</param>
+        /// <param name="include">Supports "neighborhood" and returns the neighborhood for each owner.</param>
+        /// <param name="q">Returns owners containing the query string anywhere in their full name.</param>
         /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get(
@@ -108,6 +108,12 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Gets owner specified by id</param>
+        /// <param name="include">Supports "neighborhood" and returns the neighborhood for specified owner.</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetOwners")]
         public async Task<IActionResult> Get(
             [FromRoute] int id,
@@ -225,6 +231,11 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Updates owner specified by id.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Owner owner)
         {

@@ -29,6 +29,11 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="neighborhoodId">Filters dogs by queried neighborhood id.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] Int32? neighborhoodId)
         {
@@ -80,6 +85,11 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Gets dog specified by id.</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetDogs")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
@@ -152,6 +162,11 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Updates dog specified by id.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] Dog dog)
         {
@@ -196,6 +211,11 @@ namespace DogWalkAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Deletes dog specified by id.</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
